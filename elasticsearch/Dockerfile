@@ -1,2 +1,5 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.1
-RUN chmod -R 777 /usr/share/elasticsearch
+USER root
+RUN chgrp -R 0 /usr/share/elasticsearch && \
+    chmod -Rf g+rwx /usr/share/elasticsearch
+USER elasticsearch

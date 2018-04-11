@@ -8,8 +8,8 @@ RUN \
     pip install requests &&\
     pip install requests-kerberos &&\
     pip install configparser &&\
-    mkdir /data &&\
-    mkdir /utls &&\
-    chmod 777 /data &&\
-    chmod 777 /utls
+    mkdir -p /data &&\
+    mkdir -p /utls &&\
+    chmod -R 777 /data &&\
+    chmod -R 777 /utls
 USER logstash
