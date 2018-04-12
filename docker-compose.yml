@@ -5,6 +5,9 @@ services:
   elasticsearch:
     build:
       context: elasticsearch/
+      args:
+        uid: ${uid}
+        gid: ${gid}
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
       - ./elasticsearch/data/:/usr/share/elasticsearch/data/:rw
@@ -13,14 +16,15 @@ services:
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      uid: ${uid}
-      gid: ${gid}
     networks:
       - es
 
   logstash:
     build:
       context: logstash/
+      args:
+        uid: ${uid}
+        gid: ${gid}
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
@@ -28,8 +32,6 @@ services:
       - ./logstash/utls/:/utls/
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-      uid: ${uid}
-      gid: ${gid}
     networks:
       - es
     depends_on:

@@ -1,8 +1,8 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.1
-ENV uid $uid
-ENV gid $gid
+ARG uid
+ARG gid
 USER root
-CMD usermod -u $uid  elasticsearch
-CMD groupmod -g $gid elasticsearch
-CMD  chown -R elasticsearch:elasticsearch /usr/share/elasticsearch
+RUN usermod -u $uid elasticsearch
+RUN groupmod -g $gid elasticsearch
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
 USER elasticsearch

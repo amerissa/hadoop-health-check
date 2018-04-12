@@ -1,6 +1,6 @@
 FROM docker.elastic.co/logstash/logstash-oss:6.2.2
-ENV uid $uid
-ENV gid $gid
+ARG uid
+ARG gid
 USER root
 RUN yum -y install epel-release
 RUN yum -y install python-pip
@@ -12,8 +12,8 @@ RUN \
     pip install configparser &&\
     mkdir -p /data &&\
     mkdir -p /utls
-CMD usermod -u $uid logstash
-CMD groupmod -g $gid logstash 
+RUN usermod -u $uid logstash
+RUN groupmod -g $gid logstash 
 RUN \
     chown -R logstash:logstash /data &&\
     chown -R logstash:logstash /utls
