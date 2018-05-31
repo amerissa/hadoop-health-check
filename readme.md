@@ -17,5 +17,10 @@ Get insights from an application perspective to your Hadoop cluster. Get live an
   - Place the FSImage as `logstash/data/fsimage`
   - Start up the project as `startup.sh`
 
+#### Kerberos Support:
+  - Set `yarn.ini` Kerberos section to `True`
+  - Place your `krb5.conf` file in `logstash/utls/`
+  - Make sure the user has the `@REALM` attached to it
+
 ### Dashboards:
 Dashboards will come up on port 5601 on the host's IP. Navigate to the Dashboards section in Kibana to view prebuilt dashboards. Indexed data is avaliable under Discover
